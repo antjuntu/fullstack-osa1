@@ -23,13 +23,16 @@ const Statistics = ({ good, neutral, bad }) => {
   const showStatistics = () => {
     if (good + neutral + bad > 0) {
       return (
-        <div>
-          <Statistic text='hyvä' value={good} />
-          <Statistic text='neutraali' value={neutral} />
-          <Statistic text='huono' value={bad} />
-          <Statistic text='keskiarvo' value={averageOfPoints()} />
-          <Statistic text='positiivisia' value={positivePoints()} />
-        </div>
+        <table>
+          <tbody>
+            <Statistic text='hyvä' value={good} />
+            <Statistic text='neutraali' value={neutral} />
+            <Statistic text='huono' value={bad} />
+            <Statistic text='yhteensä' value={good + neutral + bad} />
+            <Statistic text='keskiarvo' value={averageOfPoints()} />
+            <Statistic text='positiivisia' value={positivePoints()} />
+          </tbody>
+        </table>
       )
     }
     return (
@@ -47,7 +50,9 @@ const Statistics = ({ good, neutral, bad }) => {
 
 const Statistic = ({ text, value }) => {
   return (
-    <div>{text} {value}</div>
+    <tr>
+      <td>{text}</td><td>{value}</td>
+    </tr>
   )
 }
 
