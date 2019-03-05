@@ -20,6 +20,22 @@ const App = () => {
     setBad(bad + 1)
   }
 
+  const averageOfPoints = () => {
+    const n = good + neutral + bad
+    if (n === 0) {
+      return 0
+    }
+    return ((good - bad) / n).toFixed(2)
+  }
+
+  const positivePoints = () => {
+    const n = good + neutral + bad
+    if (n === 0) {
+      return 0
+    }
+    return (100 * good / n).toFixed()
+  }
+
   return (
     <div>
       <h2>anna palautetta</h2>
@@ -29,9 +45,13 @@ const App = () => {
         <button onClick={handleBadClick}>huono</button>
       </div>
       <h2>statistiikka</h2>
-      <p>hyvä {good}</p>
-      <p>neutraali {neutral}</p>
-      <p>huono {bad}</p>
+      <div>
+        <div>hyvä {good}</div>
+        <div>neutraali {neutral}</div>
+        <div>huono {bad}</div>
+        <div>keskiarvo {averageOfPoints()}</div>
+        <div>positiivisia {positivePoints()}%</div>
+      </div>
     </div>
   )
 }
