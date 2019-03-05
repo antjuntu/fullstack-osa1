@@ -20,9 +20,9 @@ const Statistics = ({ good, neutral, bad }) => {
     return (100 * good / n).toFixed()
   }
 
-  return (
-    <div>
-      <h2>statistiikka</h2>
+  const showStatistics = () => {
+    if (good + neutral + bad > 0) {
+      return (
         <div>
           <div>hyvä {good}</div>
           <div>neutraali {neutral}</div>
@@ -30,6 +30,17 @@ const Statistics = ({ good, neutral, bad }) => {
           <div>keskiarvo {averageOfPoints()}</div>
           <div>positiivisia {positivePoints()}%</div>
         </div>
+      )
+    }
+    return (
+      <div>Ei yhtään palautetta annettu</div>
+    )
+  }
+
+  return (
+    <div>
+      <h2>statistiikka</h2>
+        {showStatistics()}
     </div>
   )
 }
