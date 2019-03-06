@@ -4,11 +4,20 @@ import './index.css'
 
 const App = (props) => {
   const [selected, setSelected] = useState(0)
+  const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
+
+  //console.log(points)
 
   const getRandomAnecdote = () => {
     const index = Math.floor(Math.random() * anecdotes.length)
-    console.log(index)
+    //console.log(index)
     setSelected(index)
+  }
+
+  const voteAnecdote = () => {
+    const copyOfPoints = [...points]
+    copyOfPoints[selected]++;
+    setPoints(copyOfPoints)
   }
 
   return (
@@ -16,6 +25,10 @@ const App = (props) => {
       <div>
         {props.anecdotes[selected]}
       </div>
+      <div>
+        has {points[selected]} votes
+      </div>
+      <button onClick={voteAnecdote}>vote</button>
       <button onClick={getRandomAnecdote}>next anecdote</button>
     </div>
   )
