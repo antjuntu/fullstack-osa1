@@ -5,9 +5,18 @@ import './index.css'
 const App = (props) => {
   const [selected, setSelected] = useState(0)
 
+  const getRandomAnecdote = () => {
+    const index = Math.floor(Math.random() * anecdotes.length)
+    console.log(index)
+    setSelected(index)
+  }
+
   return (
     <div>
-      {props.anecdotes[selected]}
+      <div>
+        {props.anecdotes[selected]}
+      </div>
+      <button onClick={getRandomAnecdote}>next anecdote</button>
     </div>
   )
 }
