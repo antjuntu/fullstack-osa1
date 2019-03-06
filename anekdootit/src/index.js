@@ -5,7 +5,6 @@ import './index.css'
 const App = (props) => {
   const [selected, setSelected] = useState(0)
   const [points, setPoints] = useState(new Array(anecdotes.length).fill(0))
-
   //console.log(points)
 
   const getRandomAnecdote = () => {
@@ -20,16 +19,40 @@ const App = (props) => {
     setPoints(copyOfPoints)
   }
 
+  const maxIndex = () => {
+    let maxInd = 0
+    let max = 0
+    for (let i = 0; i < points.length; i++) {
+      if (points[i] > max) {
+        max = points[i]
+        maxInd = i
+      }
+    }
+    return maxInd
+  }
+
   return (
     <div>
       <div>
-        {props.anecdotes[selected]}
+        <h1>Anecdote of the day</h1>
+        <div>
+          {props.anecdotes[selected]}
+        </div>
+        <div>
+          has {points[selected]} votes
+        </div>
+        <button onClick={voteAnecdote}>vote</button>
+        <button onClick={getRandomAnecdote}>next anecdote</button>
       </div>
       <div>
-        has {points[selected]} votes
+        <h1>Anecdote with most votes</h1>
+        <div>
+          {props.anecdotes[maxIndex()]}
+        </div>
+        <div>
+          has {points[maxIndex()]} votes
+        </div>
       </div>
-      <button onClick={voteAnecdote}>vote</button>
-      <button onClick={getRandomAnecdote}>next anecdote</button>
     </div>
   )
 }
